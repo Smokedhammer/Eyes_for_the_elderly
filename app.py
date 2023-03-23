@@ -117,6 +117,8 @@ def index():
     return render_template('index.html')
 
 @app.route('/detect', methods=['GET','POST'])
+
+    
 def index1():
     # Main page
     
@@ -184,7 +186,8 @@ def index1():
         
         if re.search(r"Glasses",str(output[-1])):
             
-            output_dict = ast.literal_eval(output[-2])
+            #output_dict = ast.literal_eval(output[-2])
+            output_dict = output[-2]
             
             #maybe add a try except block over here
             location_of_object = output_dict['Glasses']
@@ -204,8 +207,9 @@ def index1():
         
         if re.search(r"Mobile phone",str(output[-1])):
             
-            output_dict = ast.literal_eval(output[-2])
-            
+            #output_dict = ast.literal_eval(output[-2])
+		
+            output_dict = output[-2]
             location_of_object = output_dict['Mobile phone']
             text=f"I found the phone. It is on the {location_of_object}"
         
