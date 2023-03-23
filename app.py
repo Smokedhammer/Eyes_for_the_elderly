@@ -158,15 +158,15 @@ def index1():
         
         print(output)
         
-        
-        if re.search(r"Watch",str(output[-1])):
-            
-            #output_dict = ast.literal_eval(output[-2])
-            
-            output_dict = output[-2]
-            
-            location_of_object = output_dict['Watch']
-            text=f"I found the watch. It is on the {location_of_object}"
+        if len(output[-1])>1:
+            if re.search(r"Watch",str(output[-1])):
+
+                #output_dict = ast.literal_eval(output[-2])
+
+                output_dict = output[-2]
+
+                location_of_object = output_dict['Watch']
+                text=f"I found the watch. It is on the {location_of_object}"
         else:
             text = "object not found"
         
@@ -183,15 +183,15 @@ def index1():
         
         print(output)
         
-        
-        if re.search(r"Glasses",str(output[-1])):
-            
-            #output_dict = ast.literal_eval(output[-2])
-            output_dict = output[-2]
-            
-            #maybe add a try except block over here
-            location_of_object = output_dict['Glasses']
-            text=f"I found the glasses. It is on the {location_of_object}"
+        if len(output)>1:
+            if re.search(r"Glasses",str(output[-1])):
+
+                #output_dict = ast.literal_eval(output[-2])
+                output_dict = output[-2]
+
+                #maybe add a try except block over here
+                location_of_object = output_dict['Glasses']
+                text=f"I found the glasses. It is on the {location_of_object}"
 
         else:
             text = "object not found"
@@ -200,19 +200,22 @@ def index1():
     # FOR DETECTION FOR THE PHONE
     if re.search(r"(where).*(phone).*|(find).*(phone).*",transcript,re.I):
         
+        
         output= detect.run()
         #exec(open('detect.py').read())
     
         print(output)
         
-        if re.search(r"Mobile phone",str(output[-1])):
-            
-            #output_dict = ast.literal_eval(output[-2])
-		
-            output_dict = output[-2]
-            location_of_object = output_dict['Mobile phone']
-            text=f"I found the phone. It is on the {location_of_object}"
+        if len(output[-1])>1:
         
+            if re.search(r"Mobile phone",str(output[-1])):
+
+                #output_dict = ast.literal_eval(output[-2])
+
+                output_dict = output[-2]
+                location_of_object = output_dict['Mobile phone']
+                text=f"I found the phone. It is on the {location_of_object}"
+
         else:
             text = "object not found"
                

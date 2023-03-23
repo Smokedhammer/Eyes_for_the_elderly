@@ -99,7 +99,7 @@ def get_iou(bb1, bb2):
 @smart_inference_mode()
 def run(
         weights=ROOT / 'best.pt',  # model path or triton URL
-        source=ROOT / 'test',  # file/dir/URL/glob/screen/0(webcam)
+        source=ROOT / '0',  # file/dir/URL/glob/screen/0(webcam)
         data=ROOT / 'data/coco128.yaml',  # dataset.yaml path
         imgsz=(640, 640),  # inference size (height, width)
         conf_thres=0.1,  # confidence threshold
@@ -344,8 +344,9 @@ def run(
     for i in range(0,len(dict_list)):
         for j in range(0,len(dict_list)):
             
-            if get_iou(dict_list[i],dict_list[j])>0 and get_iou(dict_list[i],dict_list[j])<=1 and dict_list[i]!=dict_list[j]:
+            if get_iou(dict_list[i],dict_list[j])>0 and get_iou(dict_list[i],dict_list[j])<1 and dict_list[i]!=dict_list[j]:
                 dict_relations[dict_list[i]['name']]=dict_list[j]['name']
+                
     
            
     print('######')
